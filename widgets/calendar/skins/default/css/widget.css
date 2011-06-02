@@ -2,7 +2,8 @@
 .widgetContainer a{ text-decoration:none;}
 .widgetContainer a:hover,
 .widgetContainer a:active,
-.widgetContainer a:focus{ text-decoration:underline;}                                                                                                                            .widgetContainer img{ border:0;}
+.widgetContainer a:focus{ text-decoration:underline;}
+.widgetContainer img{ border:0;}
 .widgetContainer sup{ position:relative; line-height:1; display:inline-block; margin:-5px 0; *padding:0 1px;}
 .widgetContainer form{ margin:0; padding:0;}
 .widgetContainer fieldset{ border:0; margin:0; padding:0;}
@@ -33,7 +34,8 @@
 .widgetContainer.black .widgetContainer a{ text-decoration:none;}
 .widgetContainer.black .widgetContainer a:hover,
 .widgetContainer.black .widgetContainer a:active,
-.widgetContainer.black .widgetContainer a:focus{ text-decoration:underline;}                                                                                                                            .widgetContainer img{ border:0;}
+.widgetContainer.black .widgetContainer a:focus{ text-decoration:underline;}
+.widgetContainer img{ border:0;}
 .widgetContainer.black .widgetContainer sup{ position:relative; line-height:1; display:inline-block; margin:-5px 0; *padding:0 1px;}
 .widgetContainer.black .widgetContainer form{ margin:0; padding:0;}
 .widgetContainer.black .widgetContainer fieldset{ border:0; margin:0; padding:0;}
