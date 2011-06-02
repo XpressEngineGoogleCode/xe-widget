@@ -1,0 +1,14 @@
+<!--@if($colorset == "black" || $colorset == "white")-->
+    <!--%import("./css/widget.css")-->
+<!--@end-->
+
+<div class="taday_total <!--@if($colorset=="black")--> black<!--@end-->">
+    <dl>
+        <dt class="blind">{$lang->today} :</dt>
+        <dd class="taday">{number_format($today_counter->unique_visitor)}</dd>
+    </dl>
+	<dl>
+        <dt class="blind">{$lang->total} :</dt>
+        <dd class="total">{number_format($total_counter->unique_visitor)}</dd>
+	</dl>
+</div>

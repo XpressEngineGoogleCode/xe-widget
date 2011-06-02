@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">Google Map</title>
+	<title xml:lang="en">Google Map</title>
+	<title xml:lang="zh-CN">谷歌地图</title>
+	<version>0.1</version>
+	<date>2011-04-15</date>
+
+	<author email_address="developers@xpressengine.com">
+		<name xml:lang="ko">NHN</name>
+		<name xml:lang="en">NHN</name>
+		<name xml:lang="zh-CN">NHN</name>
+	</author>
+
+	<extra_vars>
+		<var id="clock_width" type="text">
+			<name xml:lang="ko">가로길이</name>
+			<name xml:lang="en">Map Width</name>
+			<name xml:lang="zh-CN">地图宽度</name>
+			<description xml:lang="ko">가로길이를 지정하실 수 있습니다. (기본 300)</description>
+			<description xml:lang="en">Set up the width of map (default width: 300).</description>
+			<description xml:lang="zh-CN">设置地图的宽度（默认宽度为300）。</description>
+		</var>
+		<var id="clock_height" type="text">
+			<name xml:lang="ko">세로길이</name>
+			<name xml:lang="en">Map Height</name>
+			<name xml:lang="zh-CN">地图高度</name>
+			<description xml:lang="ko">세로길이를 지정하실 수 있습니다. (기본 300)</description>
+			<description xml:lang="en">Set up the height of map (default height: 300).</description>
+			<description xml:lang="zh-CN">设置地图的高度（默认高度为300）。</description>
+		</var>
+		<var id="map_location" type="text">
+			<name xml:lang="ko">중심 위치</name>
+			<name xml:lang="en">Central Location</name>
+			<name xml:lang="zh-CN">中心地址</name>
+			<description xml:lang="ko">Set up the central location for the map (default Beijing).</description>
+			<description xml:lang="en">Set up the central location for the map (default Beijing).</description>
+			<description xml:lang="zh-CN">设置地图的中心地址，如果为空或地址搜索不到则以北京为中心。</description>
+		</var>
+		<var id="map_type" type="select">
+			<name xml:lang="ko">지도 타입</name>
+			<name xml:lang="en">Map Type</name>
+			<name xml:lang="zh-CN">地图类型</name>
+			<options>
+				<value>ROADMAP</value>
+				<name xml:lang="ko">로드맵(기본)</name>
+				<name xml:lang="en">Roadmap (default)</name>
+				<name xml:lang="zh-CN">标准路线地图（默认）</name>
+			</options>
+			<options>
+				<value>TERRAIN</value>
+				<name xml:lang="ko">지형지도</name>
+				<name xml:lang="en">Terrain</name>
+				<name xml:lang="zh-CN">地形地图</name>
+			</options> 
+			<options>
+				<value>SATELLITE</value>
+				<name xml:lang="ko">위성지도</name>
+				<name xml:lang="en">Satellite</name>
+				<name xml:lang="zh-CN">卫星地图</name>
+			</options>
+			<options>
+				<value>HYBRID</value>
+				<name xml:lang="ko">혼합지도</name>
+				<name xml:lang="en">Hybrid</name>
+				<name xml:lang="zh-CN">混合地图</name>
+			</options>  
+        </var>
+		<var id="zoom_size" type="select">
+			<name xml:lang="ko">Zoom 크기</name>
+			<name xml:lang="en">Zoom Size</name>
+			<name xml:lang="zh-CN">缩放大小</name>
+			<description xml:lang="ko">맵을 위한 Zoom 사이즈를 설정하세요.</description>
+			<description xml:lang="en">Set up the zoom size for the map.</description>
+			<description xml:lang="zh-CN">自动缩放大小即根据地址的内容自动定义地图的缩放大小。</description>
+			<options>
+				<value>auto</value>
+				<name xml:lang="ko">Auto Zoom (기본)</name>
+				<name xml:lang="en">Auto Zoom (default)</name>
+				<name xml:lang="zh-CN">自动缩放大小（默认）</name>
+			</options>
+			<options>
+				<value>largest</value>
+				<name xml:lang="ko">가장크게</name>
+				<name xml:lang="en">Largest</name>
+				<name xml:lang="zh-CN">最大</name>
+			</options>
+			<options>
+				<value>larger</value>
+				<name xml:lang="ko">크게</name>
+				<name xml:lang="en">Larger</name>
+				<name xml:lang="zh-CN">较大</name>
+			</options> 
+			<options>
+				<value>normal</value>
+				<name xml:lang="ko">보통</name>
+				<name xml:lang="en">Normal</name>
+				<name xml:lang="zh-CN">标准</name>
+			</options> 
+			<options>
+				<value>smaller</value>
+				<name xml:lang="ko">작게</name>
+				<name xml:lang="en">Smaller</name>
+				<name xml:lang="zh-CN">较小</name>
+			</options> 
+			<options>
+				<value>smallest</value>
+				<name xml:lang="ko">가장작게</name>
+				<name xml:lang="en">Smallest</name>
+				<name xml:lang="zh-CN">最小</name>
+			</options> 
+        </var>
+		<var id="map_type_control" type="select">
+			<name xml:lang="ko">Map 컨트롤러</name>
+			<name xml:lang="en">Map Controller</name>
+			<name xml:lang="zh-CN">地图类型控件</name>
+			<options>
+				<value>HORIZONTAL_BAR</value>
+				<name xml:lang="ko">수평 bar (기본)</name>
+				<name xml:lang="en">Horizontal bar (default)</name>
+				<name xml:lang="zh-CN">水平菜单显示（默认）</name>
+			</options>
+			<options>
+				<value>DROPDOWN_MENU</value>
+				<name xml:lang="ko">Dropdown 메뉴</name>
+				<name xml:lang="en">Dropdown menu</name>
+				<name xml:lang="zh-CN">下拉菜单显示</name>
+			</options>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-Display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+        </var>
+		<var id="navigation_control" type="select">
+			<name xml:lang="ko">Navigation 컨트롤러</name>
+			<name xml:lang="en">Navigation Controller</name>
+			<name xml:lang="zh-CN">地图导航控件</name>
+			<options>
+				<value>DEFAULT</value>
+				<name xml:lang="ko">자동 (기본)</name>
+				<name xml:lang="en">Auto (default)</name>
+				<name xml:lang="zh-CN">标准导航显示（默认）</name>
+			</options>
+			<options>
+				<value>ANDROID</value>
+				<name xml:lang="ko">Android</name>
+				<name xml:lang="en">Android</name>
+				<name xml:lang="zh-CN">Android导航显示</name>
+			</options>
+			<options>
+				<value>SMALL</value>
+				<name xml:lang="ko">작게</name>
+				<name xml:lang="en">Small</name>
+				<name xml:lang="zh-CN">小型导航显示</name>
+			</options>
+			<options>
+				<value>ZOOM_PAN</value>
+				<name xml:lang="ko">크게</name>
+				<name xml:lang="en">Zoom_pan</name>
+				<name xml:lang="zh-CN">大型导航显示</name>
+			</options>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+        </var>
+		<var id="scale_control" type="select">
+			<name xml:lang="ko">Scale 컨트롤러</name>
+			<name xml:lang="en">Scale Controller</name>
+			<name xml:lang="zh-CN">比例标尺控件</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="overview_control" type="select">
+			<name xml:lang="ko">Overview 컨트롤러</name>
+			<name xml:lang="en">Overview Controller</name>
+			<name xml:lang="zh-CN">总览视图控件</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="street_view" type="select">
+			<name xml:lang="ko">거리 View</name>
+			<name xml:lang="en">Street View</name>
+			<name xml:lang="zh-CN">街景视图控件</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="icon_display" type="select">
+			<name xml:lang="ko">마커</name>
+			<name xml:lang="en">Marker</name>
+			<name xml:lang="zh-CN">图标显示</name>
+			<options>
+				<value>movable_icon</value>
+				<name xml:lang="ko">움직이는 마커 (기본)</name>
+				<name xml:lang="en">Movable Marker (default)</name>
+				<name xml:lang="zh-CN">可移动图标（默认）</name>
+			</options>
+			<options>
+				<value>unmovable_icon</value>
+				<name xml:lang="ko">움직일수 없는 마커</name>
+				<name xml:lang="en">Unmovable Marker</name>
+				<name xml:lang="zh-CN">不可移动图标</name>
+			</options>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+        </var>
+		<var id="inforwindow_display" type="select">
+			<name xml:lang="ko">정보 창</name>
+			<name xml:lang="en">Information Window</name>
+			<name xml:lang="zh-CN">信息窗口</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-Display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>directly_display</value>
+				<name xml:lang="ko">직접 표시</name>
+				<name xml:lang="en">Directly Display</name>
+				<name xml:lang="zh-CN">直接显示</name>
+			</options>
+			<options>
+				<value>marker_display</value>
+				<name xml:lang="ko">마커 표시</name>
+				<name xml:lang="en">Marker Display</name>
+				<name xml:lang="zh-CN">点击图标时显示</name>
+			</options>
+			<options>
+				<value>map_display</value>
+				<name xml:lang="ko">지도 표시</name>
+				<name xml:lang="en">Map Display</name>
+				<name xml:lang="zh-CN">点击地图时显示</name>
+			</options>
+        </var>
+		<var id="inforwindow_content" type="select">
+			<name xml:lang="ko">정보창 내용</name>
+			<name xml:lang="en">Infor Window Content</name>
+			<name xml:lang="zh-CN">信息窗口内容</name>
+			<options>
+				<value>address_info</value>
+				<name xml:lang="ko">주소정보(기본)</name>
+				<name xml:lang="en">Address Information (default)</name>
+				<name xml:lang="zh-CN">地址信息（默认）</name>
+			</options>
+			<options>
+				<value>custom_info</value>
+				<name xml:lang="ko">사용자 정보</name>
+				<name xml:lang="en">Custom Information</name>
+				<name xml:lang="zh-CN">自定义信息</name>
+			</options>
+        </var>
+		<var id="information_window" type="textarea">
+			<name xml:lang="ko">사용자 내용</name>
+			<name xml:lang="en">Custom Contents</name>
+			<name xml:lang="zh-CN">信息窗口自定义</name>
+			<description xml:lang="ko">정보창에 사용자 컨텐츠를 입력하세요.</description>
+			<description xml:lang="en">Input custom content for Information Window, but you must select 'Custom Information' in above Infor Window Content menu.</description>
+			<description xml:lang="zh-CN">自定义信息窗口的内容（支持HTML标签），必须在信息窗口内容选项中选择‘自定义信息’。</description>
+        </var>
+		<var id="circle_overlay" type="select">
+			<name xml:lang="ko">Circle Overlay</name>
+			<name xml:lang="en">Circle Overlay</name>
+			<name xml:lang="zh-CN">覆盖效果</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="search_display" type="select">
+			<name xml:lang="ko">Search Box</name>
+			<name xml:lang="en">Search Box</name>
+			<name xml:lang="zh-CN">搜索栏</name>
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-Display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+        </var>
+		<var id="route_display" type="select">
+			<name xml:lang="ko">Route Search</name>
+			<name xml:lang="en">Route Search</name>
+			<name xml:lang="zh-CN">路线查询</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="earth_control" type="select">
+			<name xml:lang="ko">Google Earth</name>
+			<name xml:lang="en">Google Earth</name>
+			<name xml:lang="zh-CN">谷歌地球API</name>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+			<options>
+				<value>true</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">显示</name>
+			</options>
+        </var>
+		<var id="earth_key" type="text">
+			<name xml:lang="ko">Earth Key</name>
+			<name xml:lang="en">Earth Key</name>
+			<name xml:lang="zh-CN">谷歌地球密钥</name>
+			<description xml:lang="ko">Input Google Earth API key, you can get it from http://code.google.com/apis/maps/signup.html.</description>
+			<description xml:lang="en">Input Google Earth API key, you can get it from http://code.google.com/apis/maps/signup.html.</description>
+			<description xml:lang="zh-CN">谷歌地球密钥可从 http://code.google.com/apis/maps/signup.html 获取。</description>
+		</var>
+		<var id="earth_display" type="select">
+			<name xml:lang="ko">Earth 표시</name>
+			<name xml:lang="en">Earth Display</name>
+			<name xml:lang="zh-CN">地球显示</name>
+			<description xml:lang="ko">google earth의 표시 등급을 설정하세요.</description>
+			<description xml:lang="en">Set up the display level of google earth.</description>
+			<description xml:lang="zh-CN">设定地球显示级别，选择复杂级别则在地球中显示包括国家/地区、区域边界、道路、三维建筑等所有图层。</description>
+			<options>
+				<value>simple_level</value>
+				<name xml:lang="ko">Simple 등급(기본)</name>
+				<name xml:lang="en">Simple Level (default)</name>
+				<name xml:lang="zh-CN">简单级别（默认）</name>
+			</options> 
+			<options>
+				<value>complex_level</value>
+				<name xml:lang="ko">Complex 등급</name>
+				<name xml:lang="en">Complex Level</name>
+				<name xml:lang="zh-CN">复杂级别</name>
+			</options>
+        </var>
+		<var id="earth_nav_control" type="select">
+			<name xml:lang="ko">Earth Navigation</name>
+			<name xml:lang="en">Earth Navigation</name>
+			<name xml:lang="zh-CN">地球导航控件</name>
+			<options>
+				<value>auto</value>
+				<name xml:lang="ko">자동(기본)</name>
+				<name xml:lang="en">Auto (default)</name>
+				<name xml:lang="zh-CN">自动隐藏（默认）</name>
+			</options> 
+			<options>
+				<value>display</value>
+				<name xml:lang="ko">표시</name>
+				<name xml:lang="en">Display</name>
+				<name xml:lang="zh-CN">始终可见</name>
+			</options>
+			<options>
+				<value>not_display</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-display</name>
+				<name xml:lang="zh-CN">始终不可见</name>
+			</options>
+        </var>
+		<var id="ballnoon_display" type="select">
+			<name xml:lang="ko">earth 기본정보창</name>
+			<name xml:lang="en">Balloon Window</name>
+			<name xml:lang="zh-CN">地球信息框</name>
+			<options>
+				<value>directly_display</value>
+				<name xml:lang="ko">직접표시</name>
+				<name xml:lang="en">Directly Display</name>
+				<name xml:lang="zh-CN">直接显示（默认）</name>
+			</options>
+			<options>
+				<value>marker_display</value>
+				<name xml:lang="ko">마커표시</name>
+				<name xml:lang="en">Marker Display</name>
+				<name xml:lang="zh-CN">点击图标时显示</name>
+			</options>
+			<options>
+				<value>false</value>
+				<name xml:lang="ko">표시안함</name>
+				<name xml:lang="en">Non-Display</name>
+				<name xml:lang="zh-CN">不显示</name>
+			</options> 
+        </var>
+		<var id="ballnoon_content" type="select">
+			<name xml:lang="ko">earth창 내용</name>
+			<name xml:lang="en">Balloon Content</name>
+			<name xml:lang="zh-CN">地球信息框内容</name>
+			<options>
+				<value>address_info</value>
+				<name xml:lang="ko">주소정보(기본)</name>
+				<name xml:lang="en">Address Information (default)</name>
+				<name xml:lang="zh-CN">地址信息（默认）</name>
+			</options>
+			<options>
+				<value>custom_info</value>
+				<name xml:lang="ko">사용자 정보</name>
+				<name xml:lang="en">Custom Information</name>
+				<name xml:lang="zh-CN">自定义信息</name>
+			</options>
+			<options>
+				<value>video_info</value>
+				<name xml:lang="ko">비디오 정보</name>
+				<name xml:lang="en">Video Information</name>
+				<name xml:lang="zh-CN">视频信息</name>
+			</options>
+        </var>
+		<var id="custom_ballnoon" type="textarea">
+			<name xml:lang="ko">사용자 earth</name>
+			<name xml:lang="en">Custom Balloon</name>
+			<name xml:lang="zh-CN">地球信息框自定义</name>
+			<description xml:lang="ko">earth창에 사용자 내용을 입력하세요.</description>
+			<description xml:lang="en">Input custom contents for balloon window, but you must select 'Custom Information' in above Balloon Content menu.</description>
+			<description xml:lang="zh-CN">自定义地球信息框的内容（支持HTML标签），必须在地球信息框内容选项中选择‘自定义信息’。</description>
+        </var>
+		<var id="ballnoon_video" type="text">
+			<name xml:lang="ko">Balloon Video</name>
+			<name xml:lang="en">Balloon Video</name>
+			<name xml:lang="zh-CN">信息框视频</name>
+			<description xml:lang="ko">비디오주소를 입력하세요. 비디오 earth창에 표시됩니다. </description>
+			<description xml:lang="en">Input video URL, the video will be then shown in the balloon window. But you must select 'Video Information' in above Balloon Content menu.</description>
+			<description xml:lang="zh-CN">输入视频URL，视频内容将出现在信息框内，必须在地球信息框内容选项中选择‘视频信息’。</description>
+		</var>
+	</extra_vars>
+</widget>

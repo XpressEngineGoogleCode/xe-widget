@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">google map skin</title>
+	<title xml:lang="en">google map skin</title>
+	<title xml:lang="zh-CN">google map skin</title>
+    <version>0.1</version>
+    <date>2011-04-15</date>
+    <link>http://code.google.com/intl/en/apis/maps/documentation/javascript/</link>
+
+    <author email_address="ryin005@nhn.com">
+        <name xml:lang="ko">xe master</name>
+		<name xml:lang="en">xe master</name>
+		<name xml:lang="zh-CN">xe master</name>
+    </author>
+</skin>

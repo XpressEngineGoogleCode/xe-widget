@@ -1,0 +1,16 @@
+<!--@if($colorset == "black" || $colorset == "white")-->
+    <!--%import("./css/widget.css")-->
+<!--@end-->
+
+<div class="today_total <!--@if($colorset=="black")--> black<!--@end-->">
+    <ul>
+        <li>
+			<span><img src="img_today.gif" width="39" height="10" alt="today"></span>
+			<span class="today">{number_format($today_counter->unique_visitor)}</span>
+		</li>
+        <li class="last">
+        <span><img src="img_total.gif" width="39" height="10" alt="total"></span>
+        <span class="total">{number_format($total_counter->unique_visitor)}</span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,29 @@
+label {
+	text-align: left;
+	width: 40px;
+	display: block;
+	float: left;
+	clear: left;
+	margin-right: 3px;
+	cursor: pointer
+}
+
+#address {
+	height: 20px
+}
+
+#SearchButton {
+	width:65px; 
+	height: 30px
+}
+
+table td {
+	vertical-align: top;
+}
+
+.back_to_map {
+	font-size:9pt;color:#FFFFFF;
+	height:24px;
+	background-color:#212121;
+
+} 
