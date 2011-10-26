@@ -1,18 +1,18 @@
+<!--%import("./css/widget.css")-->
+
 <!--%import("./filter/login.xml")-->
 <!--%import("./filter/openid_login.xml")-->
+<!--%import("./js/login.js")-->
 
-<!--@if($colorset == "black" || $colorset == "white")-->
-    <!--%import("./css/widget.css")-->
-<!--@end-->
-
-<script type="text/javascript">
-    var keep_signed_msg = "{$lang->about_keep_signed}";
-    xAddEventListener(window, "load", function(){ xGetElementById("formLogin").user_id.focus(); });
-</script>
-
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
 <div class="widgetContainer<!--@if($colorset=="black")--> black<!--@end-->">
     <!--// XE Login -->
-    <form action="./" method="post" onsubmit="return procFilter(this, widget_login)" id="formLogin" class="widgetLogin">
+<form id="fo_login_widget" action="./" method="post" ruleset="@login" class="widgetLogin">
+	<input type="hidden" name="act" value="member" />
+	<input type="hidden" name="act" value="procMemberLogin" />
+	<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
     <fieldset>
         <dl>
             <dt><label for="uid">{$lang->user_id} :</label></dt>
@@ -20,11 +20,15 @@
             <dt><label for="upw">{$lang->password} :</label></dt>
             <dd><input name="password" type="password" id="upw" class="widgetXeInputText" title="{$lang->password}" /></dd>
         </dl>
-        <p><input name="keep_signed" id="keepid" type="checkbox" value="Y" onclick="if(this.checked) return confirm(keep_signed_msg);" class="widgetXeInputCheck" /><label for="keepid">{$lang->keep_signed}</label></p>
+		<p class="keep">
+			<input type="checkbox" name="keep_signed" id="keep_signed" value="Y" />
+			<label for="keep_signed">{$lang->keep_signed}</label>
+		</p>
         <!--@if($member_config->enable_openid=='Y')-->
         <p><input name="use_open_id" id="use_open_id" type="checkbox" value="Y" onclick="xGetElementById('formLogin').style.display = 'none';xGetElementById('formOpenID').style.display='block';xGetElementById('formOpenID').openid.focus();return false;" class="inputCheck" /><label for="use_open_id">Open ID</label></p>
         <!--@end-->
-        <span class="button green login"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+        <span class="button login"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+		<p class="keep_msg">{$lang->about_keep_warning}</p>
         <ul class="help">
             <li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
             <li><a href="{getUrl('act','dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a></li>
