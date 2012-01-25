@@ -68,7 +68,7 @@ class forum_newest_document extends WidgetHandler {
 			$last_comment = null;
 			$last_args = null;
 			$last_args->module_srl = $module->module_srl;
-			$output = executeQuery('widgets.forum.getLatestComments', $last_args);
+			$output = executeQuery('widgets.forum_newest_document.getLatestComments', $last_args);
 			if($output->data && is_array($output->data)) {
 				$last_comment = array_pop($output->data);
 				$last_comment->content_type = 'comment';
@@ -78,7 +78,7 @@ class forum_newest_document extends WidgetHandler {
 			$last_document = null;
 			$last_args = null;
 			$last_args->module_srl = $module->module_srl;
-			$output = executeQuery('widgets.forum.getLatestDocuments', $last_args);
+			$output = executeQuery('widgets.forum_newest_document.getLatestDocuments', $last_args);
 			if($output->data && is_array($output->data)) {
 				$last_document = array_pop($output->data);
 				$last_document->content_type = 'document';
@@ -101,7 +101,7 @@ class forum_newest_document extends WidgetHandler {
 
 		// 각 모듈별 전체글을 구함
 		if($module_srls) $total_documents_args->module_srls = implode(',',$module_srls);
-		$total_documents_output = executeQueryArray('widgets.forum.getTotalDocuments',$total_documents_args);
+		$total_documents_output = executeQueryArray('widgets.forum_newest_document.getTotalDocuments',$total_documents_args);
 		if($total_documents_output->data) {
 			foreach($total_documents_output->data as $val) {
 				$modules[$val->module_srl]->document_count = $val->count;
@@ -111,7 +111,7 @@ class forum_newest_document extends WidgetHandler {
 		// 각 모듈별 댓글 수를 구함
 		$total_comments_args->module_srls = implode(',',$module_srls);
 
-		$total_comments_output = executeQueryArray('widgets.forum.getTotalComments',$total_comments_args);
+		$total_comments_output = executeQueryArray('widgets.forum_newest_document.getTotalComments',$total_comments_args);
 		if($total_comments_output->data) {
 			foreach($total_comments_output->data as $val) {
 				$modules[$val->module_srl]->comment_count = $val->count;
