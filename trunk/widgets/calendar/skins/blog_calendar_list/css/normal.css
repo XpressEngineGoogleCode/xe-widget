@@ -1,7 +1,7 @@
 /* Calendar */
 .widget_calendar { padding:1.2em .8em; position:relative; border:1px solid #e0e1db; margin-bottom:.7em;}
 .widget_calendar table { width:100%;}
-.widget_calendar table caption { font:bold 1em Tahoma; color:#9a9a9a; padding-bottom:.6em; background:url(none);}
+.widget_calendar table caption { font:bold 1em Tahoma; color:#9a9a9a; padding-bottom:.6em; }
 .widget_calendar table caption .mm { font:bold 1em Tahoma; color:#54564b;}
 .widget_calendar table caption a { padding:.2em;}
 .widget_calendar table caption a img { width:13px; height:13px;}

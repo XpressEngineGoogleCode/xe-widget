@@ -14,8 +14,8 @@
 	<description xml:lang="es">Este widget muestra el calendario, y si hay documentos agregados, la fecha se verá con un color más claro enlazado con URL.</description>
 	<description xml:lang="ru">Этот виджет отображает календарь, и если отправляется статья, данные будут выделены их ссылкой.</description>
 	<description xml:lang="zh-TW">顯示日曆，發表主題的日期會跟日曆產生連結。</description>
-	<version>0.1</version>
-	<date>2007-02-28</date>
+	<version>0.2</version>
+	<date>2011-03-06</date>
 
 	<author email_address="zero@zeroboard.com" link="http://www.zeroboard.com">
 		<name xml:lang="ko">제로</name>
