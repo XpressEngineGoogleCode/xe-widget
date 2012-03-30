@@ -1,0 +1,192 @@
+<load target="css/main.css"/>
+<!--@if(!$map_i)-->
+	{@ $map_i=0;}
+<!--@end-->
+
+<!--@if($widget_info->map_api == 'google')-->
+	<!--@if(!$act||$mid=='textyle')-->
+		<load target="../../js/google_map.js"/>
+		<script type="text/javascript" src="http://www.google.com/jsapi?key={$widget_info->earth_key}" charset="UTF-8" ></script>
+		<script type="text/javascript">
+			jQuery(function($){
+				$('#google_map{$map_i}>#map_canvas').initialize({
+					id : '#google_map{$map_i}',
+					index: '{$map_i}'
+				});
+				$('#google_map{$map_i}').find('#SearchButton').click(function(){
+					$('#google_map{$map_i}>#map_canvas').initialize({
+						id : '#google_map{$map_i}',
+						index: '{$map_i}'
+					});
+				});
+				$('#google_map{$map_i}').find('#back_to_map').click(function(){
+					$('#google_map{$map_i}>#map_canvas').initialize({
+						id : '#google_map{$map_i}',
+						index: '{$map_i}'
+					});
+				});
+			});
+			//load google earth
+			google.load("earth", "1");
+		</script>
+	<!--@end-->
+
+	<div id="google_map{$map_i}" class="map_container" style="width:100%">
+		<table width=100%>
+			{@ $td_one_w = $widget_info->clock_width+5}
+			<tr>
+				<td  style="width:{$td_one_w}px;">
+					<div id="SearchArea" <!--@if($widget_info->search_display != "true")-->style="display:none"<!--@end-->>
+						{@ $width_searchbox = $widget_info->clock_width-72;}
+						<input id="address"  type="textbox" value="" style="width:{$width_searchbox}px;" class="input_txt">
+						<input type="button" value="Search" id="SearchButton" class="input_search">
+					</div>
+					<div>
+						<div id="map_canvas" style="width:{$widget_info->clock_width}px;height:{$widget_info->clock_height}px; background:#DDDDDD;">
+							<p>Your map will be shown in here.</p>
+						</div>
+						<div><input type="button" value="Back to map" id="back_to_map" style="display: none;" class="back_to_map"></div>
+					</div>
+				</td>
+				<!--@if($widget_info->route_display != "false")-->
+					<td style="padding-top:30px;">
+						<div id="map_route" <!--@if($widget_info->route_display == "false")-->style="display:none"<!--@end--> style="width:100%;height:100%;">
+							<div>
+								<ul>
+								<li>
+									<label for="from"><span style="width:100px;"><b>From: </b></span></label> <input id="from"  type="textbox" value="" style="width:220px"  class="input_txt">
+								</li>
+								<li>
+									<label for="to"><b>To: </b></label> <input id="to"  type="textbox" value="{$widget_info->map_location}"|cond="$widget_info->route_display == 'fixed'" value="" readonly="readonly"|cond="$widget_info->route_display == 'fixed'" value="" style="width:220px"  class="readonly_c"|cond="$widget_info->route_display == 'fixed'" class="input_txt">
+								</li>
+								</ul>
+								<input type="button" value="Go" id="search_route" class="input_route"><input type="button" value="Close" id="close_route" style="display:none" class="input_route">
+							</div>
+							<div id="route_info" style="width:280px;height:100%;"></div>
+						</div>
+					</td>
+				<!--@end-->
+			</tr>
+		</table>
+
+		<input type="hidden" id="old_address" value="{$widget_info->map_location}"/>
+		<input type="hidden" id="map_width" value="{$widget_info->clock_width}"/>
+		<input type="hidden" id="map_height" value="{$widget_info->clock_height}"/>
+		<input type="hidden" id="map_type" value="{$widget_info->map_type}"/>
+		<input type="hidden" id="zoom_size" value="{$widget_info->zoom_size}"/>
+		<input type="hidden" id="street_view" value="{$widget_info->street_view}"/>
+		<input type="hidden" id="icon_display" value="{$widget_info->icon_display}"/>
+		<input type="hidden" id="information_window" value="{$widget_info->information_window}"/>
+		<input type="hidden" id="circle_overlay" value="{$widget_info->circle_overlay}"/>
+		<input type="hidden" id="map_type_control" value="{$widget_info->map_type_control}"/>
+		<input type="hidden" id="navigation_control" value="{$widget_info->navigation_control}"/>
+		<input type="hidden" id="scale_control" value="{$widget_info->scale_control}"/>
+		<input type="hidden" id="overview_control" value="{$widget_info->overview_control}"/>
+		<input type="hidden" id="route_display" value="{$widget_info->route_display}"/>
+		<input type="hidden" id="inforwindow_display" value="{$widget_info->inforwindow_display}"/>
+		<input type="hidden" id="inforwindow_content" value="{$widget_info->inforwindow_content}"/>
+	</div>
+
+<!--@end-->
+
+<!--Baidu Map-->
+<!--@if($widget_info->map_api == 'baidu')-->
+	<!--@if(!$act||$mid=='textyle')-->
+		<load target="../../js/baidu_map.js"/>
+		<script type="text/javascript">
+			jQuery(function($){
+				$('#google_map{$map_i}').hide();
+				$('#baidu_map{$map_i}>#baidu_map_canvas').binitialize({
+					id : '#baidu_map{$map_i}',
+					index: '{$map_i}'
+				});
+				$('#baidu_map{$map_i}').find('#SearchButton').click(function(){
+					$('#baidu_map{$map_i}>#map_canvas').binitialize({
+						id : '#baidu_map{$map_i}',
+						index: '{$map_i}'
+					});
+				});
+			});
+		</script>
+	<!--@end-->
+
+	<div id="baidu_map{$map_i}" class="map_container" style="width:100%">
+		<table width=100%>
+			{@ $td_one_w = $widget_info->clock_width+5}
+			<tr>
+				<td  style="width:{$td_one_w}px;">
+					<div id="SearchArea" <!--@if($widget_info->search_display != "true")-->style="display:none"<!--@end-->>
+						{@ $width_searchbox = $widget_info->clock_width-72;}
+						<input id="address"  type="textbox" value="" style="width:{$width_searchbox}px;" class="input_txt">
+						<input type="button" value="Search" id="SearchButton" class="input_search">
+					</div>
+					<div>
+						<div id="baidu_map_canvas" style="width:{$widget_info->clock_width}px;height:{$widget_info->clock_height}px; background:#DDDDDD; border:1px solid gray;">
+							<p>Your map will be shown in here.</p>
+						</div>
+					</div>
+				</td>
+				<!--@if($widget_info->route_display != "false" || $widget_info->local_search == 'true')-->
+					<td style="padding-top:30px;">
+						<!--@if($widget_info->local_search == "true")-->
+							<div id='local_srh'>
+								<a href="#" id="restaurant"><img title="Restaurant" width="32" height="32" src="./img/restaurant32.png"></a>
+								<a href="#" id="subway"><img title="Subway Station" width="32" height="32" src="./img/metro32.png"></a>
+								<a href="#" id="bus"><img title="Bus Station" width="32" height="32" src="./img/bus32.png"></a>
+								<a href="#" id="shop"><img title="Shop" width="32" height="32" src="./img/shop32.jpg"></a>
+								<a href="#" id="park"><img title="Park" width="32" height="32" src="./img/park32.jpg"></a>
+								<a href="#" id="bank"><img title="Bank" width="32" height="32" src="./img/bank32.png"></a>
+								<a href="#" id="hotel"><img title="Hotel" width="32" height="32" src="./img/hotel32.jpg"></a>
+							</div>
+						<!--@end-->
+						<!--@if($widget_info->route_display != "false")-->
+						<div id="map_route" <!--@if($widget_info->route_display == "false")-->style="display:none"<!--@end--> style="width:100%;height:100%;">
+							<div>
+								<ul>
+								<li>
+									<label for="from"><span style="width:100px;"><b>From: </b></span></label> <input id="from"  type="textbox" value="" style="width:220px;" class="input_txt">
+								</li>
+								<li>
+									<label for="to"><b>To: </b></label> <input id="to" type="textbox" value="{$widget_info->map_location}"|cond="$widget_info->route_display == 'fixed'" value="" readonly="readonly"|cond="$widget_info->route_display == 'fixed'" value="" style="width:220px"  class="readonly_c"|cond="$widget_info->route_display == 'fixed'" class="input_txt" />
+								</li>
+								<li>
+									<label for="by"><b>By: </b></label> 
+								   <select name='route_type' id="route_type">
+										<option value='driving'>Driving</option>
+										<option value='transit'>Transit</option>
+								   </select>
+								</li>
+								<ul>
+								<input type="button" value="Go" id="search_route" class="input_route"><input type="button" value="Close" id="close_route" style="display:none" class="input_route">
+							</div>
+							<div id="route_info" style="width:280px;height:100%;"></div>
+						</div>
+						<!--@end-->
+					</td>
+				<!--@end-->
+			</tr>
+		</table>
+
+		<input type="hidden" id="old_address" value="{$widget_info->map_location}"/>
+		<input type="hidden" id="map_width" value="{$widget_info->clock_width}"/>
+		<input type="hidden" id="map_height" value="{$widget_info->clock_height}"/>
+		<input type="hidden" id="map_type" value="{$widget_info->map_type}"/>
+		<input type="hidden" id="zoom_size" value="{$widget_info->zoom_size}"/>
+		<input type="hidden" id="street_view" value="{$widget_info->street_view}"/>
+		<input type="hidden" id="icon_display" value="{$widget_info->icon_display}"/>
+		<input type="hidden" id="information_window" value="{$widget_info->information_window}"/>
+		<input type="hidden" id="map_type_control" value="{$widget_info->map_type_control}"/>
+		<input type="hidden" id="navigation_control" value="{$widget_info->navigation_control}"/>
+		<input type="hidden" id="scale_control" value="{$widget_info->scale_control}"/>
+		<input type="hidden" id="overview_control" value="{$widget_info->overview_control}"/>
+		<input type="hidden" id="route_display" value="{$widget_info->route_display}"/>
+		<input type="hidden" id="inforwindow_display" value="{$widget_info->inforwindow_display}"/>
+		<input type="hidden" id="inforwindow_content" value="{$widget_info->inforwindow_content}"/>
+		<input type="hidden" id="local_search" value="{$widget_info->local_search}"/>
+
+	</div>
+<!--@end-->
+
+{@ $map_i++;}
+
+
