@@ -58,36 +58,49 @@
             $obj->sort_index = 'documents.'.$order_target;
             $obj->order_type = $order_type=="desc"?"asc":"desc";
             $obj->list_count = $list_count;
-            $output = executeQueryArray('widgets.newest_document.getNewestDocuments', $obj);
+            //$output = executeQueryArray('widgets.newest_document.getNewestDocuments', $obj);
 
             // document 모듈의 model 객체를 받아서 결과를 객체화 시킴
             $oDocumentModel = &getModel('document');
+			$output = $oDocumentModel->getDocumentList($obj);
 
             // 오류가 생기면 그냥 무시
             if(!$output->toBool()) return;
 
-            // 결과가 있으면 각 문서 객체화를 시킴
+			// 자체적인 Query가 아닌 Core 이용하도록 변경.
+			$moduleSrlList = array();
+			if(is_array($output->data))
+			{
+				foreach($output->data AS $key=>$oDocument)
+				{
+					array_push($moduleSrlList, $oDocument->get('module_srl'));
+				}
+			}
+			$moduleSrlList = array_unique($moduleSrlList);
+
             $modules = array();
-            if(count($output->data)) {
-                foreach($output->data as $key => $attribute) {
-                    $modules[$attribute->module_srl]->mid = $attribute->mid;
-                    $modules[$attribute->module_srl]->site_srl = $attribute->site_srl;
+			$moduleModel = &getModel('module');
+			foreach($moduleSrlList AS $key=>$value)
+			{
+				$moduleInfo = $moduleModel->getModuleInfoByModuleSrl($value);
+				$modules[$value]->mid = $moduleInfo->mid;
+				$modules[$value]->site_srl = $moduleInfo->site_srl;
+			}
 
-                    $document_srl = $attribute->document_srl;
+			// 결과가 있으면 각 문서 객체화를 시킴
+			if(count($output->data))
+			{
+				foreach($output->data as $key => $oDocument)
+				{
+					$GLOBALS['XE_DOCUMENT_LIST'][$oDocument->document_srl] = $oDocument;
 
-                    $oDocument = null;
-                    $oDocument = new documentItem();
-                    $oDocument->setAttribute($attribute, false);
-                    $GLOBALS['XE_DOCUMENT_LIST'][$oDocument->document_srl] = $oDocument;
-
-                    $document_list[$key] = $oDocument;
-                }
-                $oDocumentModel->setToAllDocumentExtraVars();
-            } else {
-
-                $document_list = array();
-                
-            }
+					$document_list[$key] = $oDocument;
+				}
+			}
+			else
+			{
+				$document_list = array();
+			}
 
             // 모듈이 하나만 선택되었을 경우 대상 모듈 이름과 링크를 생성
             if(count($modules)==1) {
