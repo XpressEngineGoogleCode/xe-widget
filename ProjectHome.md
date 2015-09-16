@@ -1,0 +1,1 @@
+XE widget is a widget for [XpressEngine](http://code.google.com/p/xe-core/).
